@@ -1,0 +1,42 @@
+<html>
+	<head>
+	<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	</head>
+<body>
+<div id="sign">
+    <div id="infor">
+        username:<input id="username" type="text" class="row"/> </br>
+        password:<input id="password" type="text" class="row"/>
+    </div>
+    <button id="btn">Sign In/Up</button>
+</div>
+<div id="char">
+    <div id="messages"></div>
+    <form>
+        <input id="m" type="text"/>
+        <button>send</button>
+    </form>
+</div>
+<script>
+    $("#char").hide()
+    $("#sign #btn").click(function(){
+       var user = {name:$("#username").val(),cipher:$("#password").val()}
+       $.post('/user',user,function(data){
+           console.log(data) 
+       })
+    })
+//  $(function () {
+//    var socket = io();
+//    $('form').submit(function(){
+//      socket.emit('chat message', $('#m').val());
+//      $('#m').val('');
+//      return false;
+//    });
+//    socket.on('chat message', function(msg){
+//      $('#messages').append($('<li>').text(msg));
+//    });
+//  });
+</script>
+</body>
+</html>
